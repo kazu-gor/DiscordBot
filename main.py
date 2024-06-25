@@ -5,9 +5,14 @@ import discord
 
 from dotenv import load_dotenv
 
-
 load_dotenv()
+
+# Set OpenAI API key
 openai.api_key = os.getenv("OPENAI_API_KEY")
+
+# Set Discord bot token
+intents = discord.Intents.all()
+client = discord.Client(intents=intents)
 
 
 class ChatGPT:
@@ -28,10 +33,6 @@ class ChatGPT:
         )
 
 
-intents = discord.Intents.all()
-client = discord.Client(intents=intents)
-
-
 @client.event
 async def on_ready():
     print("起動完了")
@@ -41,16 +42,13 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return
-
     if message.content.startswith("!h"):
         question = message.content[3:]
-
         api = ChatGPT(system_setting="あなたはアシスタントです。会話を開始します。")
         api.input_message(question)
-
         answer = api.input_list[-1]["content"]
-
         await message.channel.send(answer)
 
 
-client.run(os.getenv("DISCORD_BOT_TOKEN"))
+if __name__ == "__main__":
+    client.run(os.getenv("DISCORD_BOT_TOKEN"))

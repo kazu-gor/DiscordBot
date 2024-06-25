@@ -23,10 +23,13 @@ class ChatGPT:
 
     def input_message(self, input_text):
         self.input_list.append({"role": "user", "content": input_text})
-        result = openai.ChatCompletion.create(
-            model="gpt-4-turbo",
-            messages=self.input_list,
-        )
+        try:
+            result = openai.ChatCompletion.create(
+                model="gpt-4-turbo",
+                messages=self.input_list,
+            )
+        except Exception as e:
+            print(e)
         self.logs.append(result)
         self.input_list.append(
             {"role": "assistant", "content": result.choices[0].message.content}

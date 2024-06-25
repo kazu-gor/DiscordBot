@@ -43,7 +43,7 @@ async def on_message(message):
         return
 
     if message.content.startswith("!h"):
-        question = message.content[4:]
+        question = message.content[3:]
 
         api = ChatGPT(system_setting="あなたはアシスタントです。会話を開始します。")
         api.input_message(question)

@@ -25,7 +25,7 @@ class ChatGPT:
         self.input_list.append({"role": "user", "content": input_text})
         try:
             result = openai.ChatCompletion.create(
-                model="gpt-4-turbo",
+                model="gpt-4o-mini",
                 messages=self.input_list,
             )
         except Exception as e:

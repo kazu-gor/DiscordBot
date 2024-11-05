@@ -96,11 +96,14 @@ async def on_message(message: discord.Message):
         await message.channel.send(answer)
     if message.content.startswith("!読んで"):
         question = message.content[4:]
+        if len(question) > 4096:
+            await message.channel.send("4096文字以下で入力してください。")
+            return
         api = Text2speech()
         cost = api.text2speech(question)
         await message.channel.send(
             f"今回かかったコストは${cost:.6f}でした。",
-            file=discord.File("/tmp/tts1.mp3", filename=f"tts1_{question[:10]}.mp3"),
+            file=discord.File("/tmp/tts1.mp3", filename=f"tts1_{question[:15]}.mp3"),
         )
 
 

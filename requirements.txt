@@ -1,3 +1,4 @@
-openai==0.28
+openai
 discord
 python-dotenv
+boto3

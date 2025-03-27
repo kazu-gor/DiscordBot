@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-openai = "*"
+openai = "==0.28"
 discord = "*"
 python-dotenv = "*"
 boto3 = "*"

@@ -94,6 +94,12 @@ async def on_message(message: discord.Message):
         api.input_message(question)
         answer = api.input_list[-1]["content"]
         await message.channel.send(answer)
+    if message.content.startswith("!上沼恵美子"):
+        question = message.content[3:]
+        api = ChatGPT(system_setting="あなたは上沼恵美子です。これから来る質問に対してやっかいなおばさんとして返答をしてください。会話を開始します。")
+        api.input_message(question)
+        answer = api.input_list[-1]["content"]
+        await message.channel.send(answer)
     # if message.content.startswith("!読んで"):
     #     question = message.content[4:]
     #     if len(question) > 4096:
